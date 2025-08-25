@@ -1,70 +1,278 @@
-# Getting Started with Create React App
+# 🛍️ ELAIA E-commerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Una aplicación de comercio electrónico moderna y elegante especializada en batas y cosmetiqueros. Desarrollada con React.js en el frontend y Express.js + PostgreSQL en el backend.
 
-## Available Scripts
+## ✨ Características Principales
 
-In the project directory, you can run:
+### 🎨 Frontend
+- **React.js 18** con Context API para gestión de estado
+- **Bootstrap 5** para estilos responsivos y modernos
+- **React Router** para navegación SPA
+- **Componentes reutilizables** y hooks personalizados
+- **Autenticación JWT** con persistencia de sesión
+- **Carrito de compras** con gestión de estado local
+- **Panel de administración** completo con CRUD operations
 
-### `npm start`
+### 🔧 Backend
+- **Express.js** con arquitectura REST API
+- **Sequelize ORM** para gestión de base de datos
+- **PostgreSQL** como base de datos principal
+- **JWT** para autenticación y autorización
+- **bcrypt** para hash seguro de contraseñas
+- **Middleware** de autenticación y autorización por roles
+- **Validaciones de integridad** referencial
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🛡️ Seguridad
+- Autenticación basada en tokens JWT
+- Autorización por roles (Administrador/Cliente)
+- Validaciones de backend para integridad de datos
+- Protección contra eliminación de datos con relaciones
+- Headers de seguridad y validación de entrada
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Instalación y Configuración
 
-### `npm test`
+### Prerrequisitos
+- Node.js (v16 o superior)
+- PostgreSQL (v12 o superior)
+- npm o yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Clonar el repositorio
+```bash
+git clone <repository-url>
+cd hito3
+```
 
-### `npm run build`
+### 2. Configurar la Base de Datos
+```bash
+# Crear base de datos PostgreSQL
+createdb elaia_ecommerce
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Ejecutar esquema DDL
+psql -d elaia_ecommerce -f backend/src/db/ddl.sql
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Insertar datos iniciales
+psql -d elaia_ecommerce -f backend/src/db/data.sql
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Configurar Backend
+```bash
+cd backend
+npm install
 
-### `npm run eject`
+# Configurar variables de entorno (crear .env)
+echo "DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=elaia_ecommerce
+DB_USER=tu_usuario
+DB_PASSWORD=tu_password
+JWT_SECRET=tu_jwt_secret_muy_seguro
+PORT=4000" > .env
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Iniciar servidor backend
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. Configurar Frontend
+```bash
+cd frontend
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Configurar variables de entorno (crear .env)
+echo "REACT_APP_API_BASE_URL=http://localhost:4000/api" > .env
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Iniciar aplicación frontend
+npm start
+```
 
-## Learn More
+## 📁 Estructura del Proyecto
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+hito3/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/     # Controladores de API
+│   │   ├── models/          # Modelos de Sequelize
+│   │   ├── routes/          # Rutas de Express
+│   │   ├── middleware/      # Middleware personalizado
+│   │   ├── db/             # Scripts de base de datos
+│   │   └── index.js        # Punto de entrada del servidor
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── components/     # Componentes reutilizables
+│   │   ├── pages/          # Páginas de la aplicación
+│   │   ├── context/        # Context API (Auth, Cart)
+│   │   ├── hooks/          # Hooks personalizados
+│   │   ├── config/         # Configuración API centralizada
+│   │   └── constants/      # Constantes (colores, etc.)
+│   └── package.json
+└── README.md
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎯 Funcionalidades
 
-### Code Splitting
+### 👥 Para Usuarios
+- ✅ Registro e inicio de sesión
+- ✅ Navegación por categorías (Batas, Cosmetiqueros)
+- ✅ Carrito de compras con gestión de cantidades
+- ✅ Creación de pedidos
+- ✅ Historial de pedidos personales
+- ✅ Perfil de usuario editable
+- ✅ Páginas informativas y legales
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 🔧 Para Administradores
+- ✅ Dashboard con estadísticas generales
+- ✅ Gestión de usuarios y roles
+- ✅ CRUD completo de productos
+- ✅ Gestión de categorías
+- ✅ Administración de pedidos
+- ✅ Validaciones de integridad referencial
+- ✅ Interfaz responsive con Bootstrap
 
-### Analyzing the Bundle Size
+## 🔑 Usuarios de Prueba
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Administrador
+- **Email**: admin@elaia.com
+- **Contraseña**: admin123
 
-### Making a Progressive Web App
+### Clientes
+- **Email**: maria@example.com | **Contraseña**: cliente123
+- **Email**: juan@example.com | **Contraseña**: cliente123
+- **Email**: ana@example.com | **Contraseña**: cliente123
+- **Email**: carlos@example.com | **Contraseña**: cliente123
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🛠️ Tecnologías Utilizadas
 
-### Advanced Configuration
+### Frontend
+- React.js 18
+- React Router DOM
+- Bootstrap 5
+- React Icons
+- Axios (para algunas peticiones)
+- Context API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Backend
+- Express.js
+- Sequelize ORM
+- PostgreSQL
+- bcrypt
+- jsonwebtoken
+- cors
+- dotenv
 
-### Deployment
+## 🎨 Características de Diseño
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Paleta de Colores
+- **Primario**: #003B5B (Azul principal)
+- **Secundario**: #C2A871 (Dorado)
+- **Oscuro**: #011F3A (Azul oscuro)
+- **Claro**: #FFFCF8 (Blanco crema)
+- **Acento**: #55142A (Rojo vino)
 
-### `npm run build` fails to minify
+### Componentes Reutilizables
+- Sistema de modales centralizado
+- Tablas de datos con búsqueda y paginación
+- Formularios con validación
+- Layout responsive con navbar y footer
+- Cards de productos con carrito integrado
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📱 Responsive Design
+
+La aplicación está completamente optimizada para:
+- 📱 **Móviles** (320px+)
+- 📱 **Tablets** (768px+)
+- 💻 **Desktop** (1024px+)
+- 🖥️ **Large screens** (1200px+)
+
+## 🔐 Roles y Permisos
+
+### Administrador
+- Acceso completo al panel de administración
+- CRUD de usuarios, roles, productos y categorías
+- Visualización de todos los pedidos
+- Gestión de estadísticas del sistema
+
+### Cliente
+- Navegación pública del catálogo
+- Gestión personal del carrito
+- Creación y visualización de pedidos propios
+- Edición de perfil personal
+
+## 🚦 Estados de la Aplicación
+
+### Productos
+- Gestión completa con validaciones
+- Requiere al menos una categoría
+- Protección contra eliminación si tiene pedidos
+
+### Pedidos
+- Creación desde carrito
+- Cálculo automático de totales
+- Historial personalizado por usuario
+
+### Categorías y Roles
+- Protección contra eliminación con dependencias
+- Validaciones de integridad referencial
+
+## 🔧 Scripts Disponibles
+
+### Backend
+```bash
+npm start          # Iniciar servidor en producción
+npm run dev        # Iniciar servidor en desarrollo
+```
+
+### Frontend
+```bash
+npm start          # Iniciar en modo desarrollo
+npm run build      # Construir para producción
+npm test           # Ejecutar tests
+```
+
+## 🌐 Endpoints de API
+
+### Autenticación
+- `POST /api/auth/login` - Iniciar sesión
+- `POST /api/auth/register` - Registrar usuario
+
+### Productos
+- `GET /api/productos` - Listar productos
+- `POST /api/productos` - Crear producto (Admin)
+- `PUT /api/productos/:id` - Actualizar producto (Admin)
+- `DELETE /api/productos/:id` - Eliminar producto (Admin)
+
+### Pedidos
+- `GET /api/pedidos` - Listar pedidos
+- `POST /api/pedidos` - Crear pedido
+- `DELETE /api/pedidos/:id` - Eliminar pedido
+
+*Y más endpoints para usuarios, roles y categorías...*
+
+## 🔄 Próximas Mejoras
+
+- [ ] Sistema de pagos integrado
+- [ ] Notificaciones push
+- [ ] Sistema de reseñas y calificaciones
+- [ ] Chat de soporte en vivo
+- [ ] Integración con redes sociales
+- [ ] Sistema de cupones y descuentos
+
+## 👨‍💻 Desarrollo
+
+Este proyecto fue desarrollado como parte de un sistema de e-commerce completo, implementando mejores prácticas de desarrollo web, arquitectura escalable y experiencia de usuario moderna.
+
+### Características de Desarrollo
+- Código documentado en español
+- Arquitectura modular y escalable
+- Configuración centralizada de API
+- Hooks personalizados reutilizables
+- Sistema de validaciones robusto
+- Manejo de errores consistente
+
+## 📄 Licencia
+
+Este proyecto está desarrollado para fines educativos y de demostración.
+
+---
+
+**Desarrollado con ❤️ para ELAIA E-commerce**
